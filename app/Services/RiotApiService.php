@@ -1,5 +1,4 @@
 <?php
-// app/Services/RiotApiService.php
 
 namespace App\Services;
 
@@ -38,14 +37,39 @@ class RiotApiService
         return $response->json();
     }
 
-    public function getChampionData()
+    public function getChampionDataAndNames()
     {
         $version = '13.22.1';
         $url = "{$this->dataDragonBaseUrl}/cdn/{$version}/data/en_US/champion.json";
-
+    
         $response = Http::get($url);
+    
+        $championData = $response->json();
+        $championNames = collect($championData['data'])->pluck('name', 'key')->all();
+    
+        return compact('championData', 'championNames');
+    }
+    
+    public function getChampionMasteriesBySummonerName($summonerName, $count = 3)
+    {
+        $summonerInfo = $this->getSummonerInfoByName($summonerName);
+        if (isset($summonerInfo['puuid'])) {
+            $endpoint = "/lol/champion-mastery/v4/champion-masteries/by-puuid/{$summonerInfo['puuid']}/top";
+            $url = "{$this->apiBaseUrl}{$endpoint}?count={$count}&api_key={$this->riotApiKey}";
 
-        return $response->json();
+            $response = Http::get($url);
+    
+            return $response->json();
+        }
+    
+        return null; 
     }
 
+    public function getProfileIconUrl($profileIconId)
+    {
+        $version = '13.22.1'; 
+        $url = "{$this->dataDragonBaseUrl}/cdn/{$version}/img/profileicon/{$profileIconId}.png";
+    
+        return $url;
+    }
 }
