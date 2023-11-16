@@ -10,6 +10,7 @@ class PaginationService
 {
     public static function paginateCollection(Collection $items, $perPage, $currentPage)
     {
+        
         return new LengthAwarePaginator(
             $items->forPage($currentPage, $perPage),
             $items->count(),
