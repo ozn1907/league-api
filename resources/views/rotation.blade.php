@@ -27,7 +27,10 @@
                     @endif
                 @endforeach
             </div>
-
+            <div class="mt-8">
+                {{ $freeRotation['freeChampionIds']->links() }}
+            </div>
+            
             <!-- Add more information as needed -->
 
         @else
