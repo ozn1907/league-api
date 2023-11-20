@@ -9,6 +9,15 @@
             <div class="mb-8 text-center">
                 <img src="{{ $riotApiService->getProfileIconUrl($summonerInfo['profileIconId']) }}" alt="Profile Icon" class="inline-block rounded-full shadow-md border-4 border-indigo-300 p-2">
             </div>
+            
+            <form action="{{ route('favorites') }}" method="post" class="mb-6 text-center">
+                @csrf
+                <input type="hidden" name="favoriteName" value="{{ $summonerInfo['name'] }}">
+                <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded">
+                    Add to Favorites
+                </button>
+            </form>
+            
             <div class="mb-6 text-center">
                 <p class="text-gray-800 text-lg font-semibold">{{ $summonerInfo['name'] }}</p>
                 <p class="text-gray-600">Summoner Level: {{ $summonerInfo['summonerLevel'] }}</p>

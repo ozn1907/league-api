@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/summoner/search', [RiotController::class, 'searchSummoner'])->name('summoner.search');
     Route::get('/search', [SearchController::class, 'index'])->name('search');
+    Route::match(['get', 'post'], '/favorites', [RiotController::class, 'manageFavorites'])->name('favorites');
+
 });
 
 Route::middleware(['auth'])->group(function () {
