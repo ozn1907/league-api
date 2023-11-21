@@ -36,19 +36,26 @@ class RiotController extends Controller
     public function manageFavorites(Request $request)
     {
         $user = Auth::user();
-    
+
         if ($request->has('favoriteName')) {
             $favoriteName = $request->input('favoriteName');
             $result = $this->favoriteService->addToFavorites($user, $favoriteName);
-    
+
             return redirect()->route('favorites')->with($result['type'], $result['message']);
         }
-    
+
         $favorites = $user->favorites;
-    
+
         return view('favorites', compact('favorites'));
     }
-    
+
+    public function destroy($id)
+    {
+        $user = Auth::user();
+        $user->favorites()->where('id', $id)->delete();
+        return redirect()->route('favorites')->with('success', 'Summoner deleted from favorites.');
+    }
+
     public function rotation()
     {
         $freeRotation = $this->riotApiService->rotation();
@@ -61,6 +68,6 @@ class RiotController extends Controller
         $freeChampionIds = collect($freeRotation['freeChampionIds']);
         $freeRotation['freeChampionIds'] = PaginationService::paginateCollection($freeChampionIds, $perPage, $currentPage);
 
-        return view('rotation', compact('freeRotation', 'championData', ));
+        return view('rotation', compact('freeRotation', 'championData',));
     }
 }
