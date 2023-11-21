@@ -32,7 +32,8 @@
                 <div class="flex flex-wrap justify-center">
                     @foreach($championMasteries as $mastery)
                         <div class="m-4 p-4 border border-gray-300 rounded-md bg-indigo-100 text-indigo-800">
-                            <p class="font-semibold">{{ $championNames[optional($mastery)['championId']] }}</p>
+                            <img src="{{ $riotApiService->getChampionIconUrl(optional($mastery)['championId']) }}" alt="Champion Icon" class="w-16 h-16 mb-4 mx-auto rounded-full">
+                            <p class="font-semibold text-lg">{{ $championNames[optional($mastery)['championId']] }}</p>
                             <p class="text-gray-600">Mastery Level: {{ optional($mastery)['championLevel'] }}</p>
                             <p class="text-gray-600">Champion Points: {{ optional($mastery)['championPoints'] }}</p> 
                         </div>

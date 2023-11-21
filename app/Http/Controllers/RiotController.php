@@ -49,8 +49,6 @@ class RiotController extends Controller
         return view('favorites', compact('favorites'));
     }
     
-
-
     public function rotation()
     {
         $freeRotation = $this->riotApiService->rotation();
@@ -63,6 +61,6 @@ class RiotController extends Controller
         $freeChampionIds = collect($freeRotation['freeChampionIds']);
         $freeRotation['freeChampionIds'] = PaginationService::paginateCollection($freeChampionIds, $perPage, $currentPage);
 
-        return view('rotation', compact('freeRotation', 'championData'));
+        return view('rotation', compact('freeRotation', 'championData', ));
     }
 }

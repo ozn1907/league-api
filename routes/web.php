@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/summoner/search', [RiotController::class, 'searchSummoner'])->name('summoner.search');
     Route::get('/search', [SearchController::class, 'index'])->name('search');
     Route::match(['get', 'post'], '/favorites', [RiotController::class, 'manageFavorites'])->name('favorites');
+    Route::delete('/favorites/{id}', [RiotController::class, 'destroy'])->name('favorites.destroy');
 
 });
 
