@@ -18,6 +18,9 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
     'riot_api_key' => env('RIOT_API_KEY'),
+    'api_base_url' => env('RIOT_API_BASE_URL', 'https://euw1.api.riotgames.com'),
+    'data_dragon_base_url' => env('DATA_DRAGON_BASE_URL', 'https://ddragon.leagueoflegends.com'),
+    'default_version' => env('DEFAULT_VERSION', '13.22.1'),
 
 
     /*
