@@ -49,7 +49,7 @@ class RiotApiService
      * 
      * @return the JSON response from the API call.
      */
-    public function getSummonerInfoByName($summonerName)
+    public function getSummonerInfoByName($summonerName): array
     {
         $endpoint = "/lol/summoner/v4/summoners/by-name/{$summonerName}";
         $url = $this->buildApiUrl($endpoint);
