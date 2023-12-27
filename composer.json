@@ -9,8 +9,10 @@
         "codeat3/blade-simple-icons": "^1.94",
         "codeat3/blade-typicons": "^1.5",
         "guzzlehttp/guzzle": "^7.2",
+        "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
+        "laravel/telescope": "^4.17",
         "laravel/tinker": "^2.8"
     },
     "require-dev": {
