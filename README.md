@@ -1,66 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# League of Legends Laravel Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This Laravel project is created using the Riot API and the Data Dragon Riot API. The aim of this project is to enhance my personal development in Laravel while working on an application for the game League of Legends, which I enjoy playing during my free time.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **Summoner Profile**: View detailed information about a Summoner, such as their level, icon, and most played champions.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. **Free Champion Rotation**: Discover which champions are currently available in the free rotation, allowing players to easily try out new champions.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. **Search Functionality**: Search the database to quickly find Summoners and their associated information.
 
-## Learning Laravel
+4. **Favorite Section**: Add your favorite Summoners to a special section for quick and easy access.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Before using this project, make sure you have the following:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Riot Account**: You need a Riot Games account to access the Riot API. If you don't have one, you can create an account on the [Riot Games website](https://signup.na.leagueoflegends.com/).
 
-## Laravel Sponsors
+- **API Key**: Obtain a Riot API key from the [Riot Developer Portal](https://developer.riotgames.com/). This key is necessary for making requests to the Riot API.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Environment Configuration
 
-### Premium Partners
+Update your `.env` file with the following configuration. Adjust the `RIOT_API_KEY` to your Riot API key, and set `RIOT_API_BASE_URL` based on your region. The `DATA_DRAGON_BASE_URL` is the base URL for the Data Dragon API, and `DEFAULT_VERSION` is the version of the Data Dragon API.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```env
+RIOT_API_KEY="your-riot-api-key"
+RIOT_API_BASE_URL=https://your-region.api.riotgames.com
+DATA_DRAGON_BASE_URL=https://ddragon.leagueoflegends.com
+DEFAULT_VERSION=13.24.1
+```
 
-## Contributing
+## Installation
+1. Clone the repository to your local machine.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   ```bash
+   git clone https://github.com/ozn1907/league-api.git
 
-## Code of Conduct
+2. Navigate to the project directory.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   cd league-api
 
-## Security Vulnerabilities
+3. Install the required dependencies.
+   ```bash
+    composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Copy the **.env.example** file to **.env** and configure the database settings.
+   ```bash
+    cp .env.example .env
 
-## License
+5. Generate an application key.
+   ```bash
+    php artisan key:generate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Run the database migrations.
+   ```bash
+    php artisan migrate
+
+7. Start the development server.
+   ```bash
+    php artisan serve
