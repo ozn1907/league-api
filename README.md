@@ -46,18 +46,30 @@ DEFAULT_VERSION=13.24.1
    ```bash
     composer install
 
-4. Copy the **.env.example** file to **.env** and configure the database settings.
+4. Install the required dependencies.
+   ```bash
+    npm install
+
+5. Build the project.
+   ```bash
+    npm run dev
+
+6. Copy the **.env.example** file to **.env** and configure the database settings.
    ```bash
     cp .env.example .env
 
-5. Generate an application key.
+7. Generate an application key.
    ```bash
     php artisan key:generate
 
-6. Run the database migrations.
+8. Database password to be entered in the .env file
+   ```bash
+    DB_PASSWORD=your-database-password
+
+9. Run the database migrations.
    ```bash
     php artisan migrate
 
-7. Start the development server.
+10. Start the development server.
    ```bash
     php artisan serve
