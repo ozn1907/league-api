@@ -75,23 +75,4 @@ class UpdateApiVersion extends Command
             $this->error('Failed to create a new branch. Error: ' . $process->getErrorOutput());
         }
     }
-
-    private function requestMerge($branchName)
-    {
-        // Assuming your GitLab project URL is 'https://github.com/ozn1907/league-api'
-        $gitlabApiUrl = 'https://github.com/ozn1907/league-api';
-
-        $response = Http::post($gitlabApiUrl, [
-            'source_branch' => $branchName,
-            'target_branch' => 'main',
-            'title' => 'Merge ' . $branchName,
-            'remove_source_branch' => true,
-        ]);
-
-        if ($response->successful()) {
-            $this->info('Merge request successfully created.');
-        } else {
-            $this->error('Failed to create a merge request. Error: ' . $response->body());
-        }
-    }
 }
