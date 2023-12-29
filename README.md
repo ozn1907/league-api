@@ -71,5 +71,5 @@ DEFAULT_VERSION=13.24.1
     php artisan migrate
 
 10. Start the development server.
-   ```bash
+    ```bash
     php artisan serve
