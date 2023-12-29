@@ -10,7 +10,7 @@
         <ul class="space-y-4">
             @foreach($favorites as $favorite)
             <li class="flex items-center justify-between border-b border-gray-300 pb-2">
-                <a href="{{ route('summoner.search', ['summonerName' => $favorite->favorite_name]) }}"
+                <a href="{{ route('summoner.searchSummoner', ['summonerName' => $favorite->favorite_name]) }}"
                     class="text-indigo-600 hover:underline">
                     {{ $favorite->favorite_name }}
                 </a>
