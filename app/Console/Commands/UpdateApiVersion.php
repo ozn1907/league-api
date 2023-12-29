@@ -17,7 +17,6 @@ class UpdateApiVersion extends Command
     {
         try {
             Log::info('Checking for API version update...');
-
             // Fetch the latest version from the API
             $latestVersion = Http::get('https://ddragon.leagueoflegends.com/api/versions.json')->json()[0];
 
@@ -66,11 +65,33 @@ class UpdateApiVersion extends Command
             // Check if the push process was successful
             if ($pushProcess->isSuccessful()) {
                 $this->info('New branch pushed to the remote repository.');
+
+                // Request a merge using GitLab API
+                $this->requestMerge($branchName);
             } else {
                 $this->error('Failed to push the new branch. Error: ' . $pushProcess->getErrorOutput());
             }
         } else {
             $this->error('Failed to create a new branch. Error: ' . $process->getErrorOutput());
+        }
+    }
+
+    private function requestMerge($branchName)
+    {
+        // Assuming your GitLab project URL is 'https://github.com/ozn1907/league-api'
+        $gitlabApiUrl = 'https://github.com/ozn1907/league-api';
+
+        $response = Http::post($gitlabApiUrl, [
+            'source_branch' => $branchName,
+            'target_branch' => 'main',
+            'title' => 'Merge ' . $branchName,
+            'remove_source_branch' => true,
+        ]);
+
+        if ($response->successful()) {
+            $this->info('Merge request successfully created.');
+        } else {
+            $this->error('Failed to create a merge request. Error: ' . $response->body());
         }
     }
 }
