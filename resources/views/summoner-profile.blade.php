@@ -25,10 +25,7 @@
         @else
         <p class="text-center text-red-500 font-bold">Summoner does not exist.</p>
         @endif
-        <script>
-          
-        </script>
-        
+
         @if(isset($championMasteries))
             <div class="mb-6 text-center">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-800">Champion Masteries</h2>

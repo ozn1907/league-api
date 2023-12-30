@@ -32,11 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 /* This code is adding an event listener to the `DOMContentLoaded` event, which is fired when the
 initial HTML document has been completely loaded and parsed. */
 /* Sfx for champion cards */
-document.addEventListener('DOMContentLoaded', () => {
-    const championElements = document.querySelectorAll('[data-champion-id]');
-    championElements.forEach(championElement => {
-        championElement.addEventListener('mouseover', () => {
-            playChampionSound(championElement);
-        });
+const championElements = document.querySelectorAll('[data-champion-id]');
+championElements.forEach(championElement => {
+    championElement.addEventListener('click', () => {
+        playChampionSound(championElement);
     });
 });
