@@ -18,8 +18,9 @@
                     @csrf
                     @method('delete')
                     <button type="submit" class="text-red-500 duration-300 hover:text-red-700">
-                        <x-typ-delete class="h-6 w-6" />
+                        <x-go-trash-24 class="h-6 w-6" />
                     </button>
+                    
                 </form>
             </li>
             @endforeach
