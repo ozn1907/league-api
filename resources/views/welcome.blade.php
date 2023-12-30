@@ -38,7 +38,7 @@
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="flex justify-center">
-                <x-si-leagueoflegends class="h-14 w-14"/>
+                <img src="{{ asset('/svg/logo.svg') }}" alt="League API Logo" class="h-14 w-14">
             </div>
 
             <div class="mt-16">

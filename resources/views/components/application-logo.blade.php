@@ -1,1 +1,0 @@
-<x-si-leagueoflegends class="w-8 h-8" />

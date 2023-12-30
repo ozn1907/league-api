@@ -33,7 +33,7 @@
         @endif
 
         <!-- Page Content -->
-        <main class="mt-8 mb-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <main class="mt-8 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             @if (isset($slot))
             {{ $slot }}
             @else
@@ -41,5 +41,7 @@
             @endif
         </main>
     </div>
+
+    @include('layouts.footer')
 </body>
 </html>

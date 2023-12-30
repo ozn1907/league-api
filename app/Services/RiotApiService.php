@@ -88,7 +88,7 @@ class RiotApiService
      * 
      * @return the JSON response from the API call to retrieve the champion masteries for a summoner.
      */
-    public function getChampionMasteriesBySummonerName($summonerName, $count = 4)
+    public function getChampionMasteriesBySummonerName($summonerName, $count = 3)
     {
         $summonerInfo = $this->getSummonerInfoByName($summonerName);
         if (optional($summonerInfo)['puuid']) {
@@ -99,7 +99,6 @@ class RiotApiService
 
             return $response->json();
         }
-
         return null;
     }
 }
