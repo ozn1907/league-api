@@ -10,6 +10,7 @@ class SearchSummonerController extends Controller
 {
     protected $riotApiService;
     protected $dataDragonService;
+    protected $matchesController;
 
     /**
      * The index function returns a view for the search page.
@@ -32,11 +33,12 @@ class SearchSummonerController extends Controller
      * access to the Data Dragon API. The Data Dragon API is a tool provided by Riot Games that allows
      * developers to retrieve game data such as champion information, item information, and more.
      */
-    public function __construct(RiotApiService $riotApiService, DataDragonService $dataDragonService)
+    public function __construct(RiotApiService $riotApiService, DataDragonService $dataDragonService, MatchesController $matchesController)
     {
         $this->middleware('auth');
         $this->riotApiService = $riotApiService;
         $this->dataDragonService = $dataDragonService;
+        $this->matchesController = $matchesController;
     }
 
     /**
@@ -64,6 +66,9 @@ class SearchSummonerController extends Controller
         $combinedData = $this->dataDragonService->getChampionDataAndNames();
         $championNames = $combinedData['championNames'];
 
-        return view('summoner-profile', compact('summonerInfo', 'championMasteries', 'championNames', 'dataDragonService'));
+        // Use the MatchesController to fetch match IDs
+        $matchIds = $this->matchesController->getMatchIdsBySummonerName($summonerName);
+
+        return view('summoner-profile', compact('summonerInfo', 'championMasteries', 'championNames', 'matchIds', 'dataDragonService'));
     }
 }
