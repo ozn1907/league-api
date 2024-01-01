@@ -79,58 +79,14 @@ class RiotApiService
         return null;
     }
 
-    public function getMatchDetailsById(string $matchId): ?array
+
+    public function rotation(): array
     {
-        $url = sprintf(
-            'https://europe.api.riotgames.com/lol/match/v5/matches/%s?api_key=%s',
-            $matchId,
-            $this->riotApiKey
-        );
-
-        try {
-            $response = Http::get($url);
-
-            if ($response->successful()) {
-                return $response->json();
-            }
-
-            Log::error("API Request failed: {$response->status()}");
-        } catch (\Exception $e) {
-            Log::error("Exception during API Request: {$e->getMessage()}");
-        }
-
-        return null;
-    }
-
-    public function isSummonerWinner(array $matchDetails, string $summonerName): bool
-    {
-        foreach ($matchDetails['info']['participants'] as $participant) {
-            if ($participant['summonerName'] === $summonerName) {
-                $participantTeamId = $participant['teamId'];
-
-                foreach ($matchDetails['info']['teams'] as $team) {
-                    if ($team['teamId'] === $participantTeamId) {
-                        return $team['win'];
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public function getChampionList(): ?array
-    {
-        $endpoint = '/lol/static-data/v4/champions';
+        $endpoint = '/lol/platform/v3/champion-rotations';
         $url = $this->buildApiUrl($endpoint);
 
         $response = Http::get($url);
 
-        if ($response->successful()) {
-            return $response->json();
-        }
-
-        Log::error("API Request failed: {$response->status()}");
-        return null;
+        return $response->json();
     }
 }

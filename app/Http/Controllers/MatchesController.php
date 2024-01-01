@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\RiotApiService;
-
+use Illuminate\Support\Facades\Log;
 class MatchesController extends Controller
 {
     protected $riotApiService;
@@ -18,10 +18,15 @@ class MatchesController extends Controller
     {
         $summonerInfo = $this->riotApiService->getSummonerInfoByName($summonerName);
 
-        if ($summonerInfo && isset($summonerInfo['puuid'])) {
-            return $this->riotApiService->getMatchIdsByPuuid($summonerInfo['puuid'], $start, $count);
+        if (!$summonerInfo || !isset($summonerInfo['puuid'])) {
+            return null;
         }
 
-        return null;
+        try {
+            return $this->riotApiService->getMatchIdsByPuuid($summonerInfo['puuid'], $start, $count);
+        } catch (\Exception $e) {
+            Log::error("Exception in getMatchIdsBySummonerName: {$e->getMessage()}");
+            return null;
+        }
     }
 }
