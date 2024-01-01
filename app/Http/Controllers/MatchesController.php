@@ -14,7 +14,7 @@ class MatchesController extends Controller
     }
 
     
-    public function getMatchIdsBySummonerName(string $summonerName, int $start = 0, int $count = 100)
+    public function getMatchIdsBySummonerName(string $summonerName, int $start = 0, int $count = 1)
     {
         $summonerInfo = $this->riotApiService->getSummonerInfoByName($summonerName);
 
